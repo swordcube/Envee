@@ -6,10 +6,10 @@ func _ready():
 	modulate.a = 0.0
 	
 	var user:UserData = UserDatabase.users[Tools.current_user]
-	if Tools.cur_wallpaper == null:
+	if not is_instance_valid(Tools.cur_wallpaper):
 		Tools.cur_wallpaper = load(user.wallpaper) if ResourceLoader.exists(user.wallpaper) else ImageTexture.create_from_image(Image.load_from_file(user.wallpaper))
 	
-	#wallpaper.texture = Tools.cur_wallpaper
+	wallpaper.texture = Tools.cur_wallpaper
 	Tools.apply_picture_pos(user.wallpaper_picture_pos, wallpaper)
 	
 	await get_tree().create_timer(0.5).timeout

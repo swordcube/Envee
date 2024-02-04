@@ -16,13 +16,12 @@ var cur_accent_color:Color
 var current_user:int = 0
 
 func apply_picture_pos(pos:PicturePosition, tex_rect:TextureRect):
-	var window:Window = get_window()
-	var screen_size:Vector2 = DisplayServer.screen_get_size()
 	match pos:
 		PicturePosition.FILL:
-			#i tried figuring out the rest of the code but
-			#i shat myself
-			tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			var window:Window = get_window()
+			var screen_size:Vector2 = window.size
+			
+			tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			
 			var screen_ratio:float = screen_size.x / screen_size.y
 			var tex_size:Vector2 = tex_rect.texture.get_size()
