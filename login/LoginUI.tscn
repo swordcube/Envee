@@ -1,0 +1,200 @@
+[gd_scene load_steps=10 format=3 uid="uid://bft5p058k6bkf"]
+
+[ext_resource type="Script" path="res://login/LoginUI.gd" id="1_j63yb"]
+[ext_resource type="Texture2D" uid="uid://b2178okyf32lx" path="res://assets/wallpapers/mountains_green.png" id="2_wrtrk"]
+[ext_resource type="Shader" path="res://assets/shaders/blur.gdshader" id="3_h8ygn"]
+[ext_resource type="Texture2D" uid="uid://cxr4t3s4xetqr" path="res://assets/generic/user.png" id="4_h3nll"]
+[ext_resource type="Texture2D" uid="uid://b6ocu2usti84s" path="res://assets/generic/arrow_right.svg" id="6_h74o6"]
+[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/styles/gui.tres" id="7_myx6g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sodqk"]
+shader = ExtResource("3_h8ygn")
+shader_parameter/lod = 3.864
+
+[sub_resource type="Gradient" id="Gradient_gs5ka"]
+offsets = PackedFloat32Array(0, 0.547826)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gmted"]
+gradient = SubResource("Gradient_gs5ka")
+
+[node name="Login" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j63yb")
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -15.0
+offset_right = -27.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("2_wrtrk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BGBlur" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.25)
+material = SubResource("ShaderMaterial_sodqk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UserContainer" type="Control" parent="UIContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -126.5
+offset_right = 576.0
+offset_bottom = -1.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UserList" type="HBoxContainer" parent="UIContainer/UserContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -62.5
+offset_right = 62.0
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="User1" type="Control" parent="UIContainer/UserContainer/UserList"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UIContainer/UserContainer/UserList/User1"]
+modulate = Color(0.792157, 0.858824, 0.811765, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("4_h3nll")
+expand_mode = 1
+
+[node name="UsernameLabel" type="Label" parent="UIContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.5
+offset_top = 20.0
+offset_right = 123.5
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_myx6g")
+theme_override_font_sizes/font_size = 32
+text = "Unknown User"
+horizontal_alignment = 1
+
+[node name="ErrorLabel" type="Label" parent="UIContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.5
+offset_top = 148.0
+offset_right = 184.5
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_myx6g")
+theme_override_colors/font_color = Color(0.87451, 0.482353, 0.482353, 1)
+theme_override_font_sizes/font_size = 18
+text = "Password is incorrect, please try again."
+horizontal_alignment = 1
+
+[node name="PasswordField" type="LineEdit" parent="UIContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = 88.5
+offset_right = 139.0
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_myx6g")
+placeholder_text = "Enter your password..."
+secret = true
+secret_character = "*"
+
+[node name="CoolFX" type="TextureRect" parent="UIContainer"]
+modulate = Color(0.117647, 0.14902, 0.129412, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 73.0
+offset_top = 81.5
+offset_right = 145.0
+offset_bottom = 126.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_gmted")
+expand_mode = 1
+
+[node name="AcceptPassword" type="TextureRect" parent="UIContainer"]
+modulate = Color(0.792157, 0.858824, 0.811765, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 112.5
+offset_top = 88.5
+offset_right = 143.5
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_h74o6")
+expand_mode = 1
+
+[connection signal="gui_input" from="UIContainer/AcceptPassword" to="." method="accept_click"]

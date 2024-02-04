@@ -1,0 +1,550 @@
+[gd_scene load_steps=25 format=3 uid="uid://cyd2qndj5nkxy"]
+
+[ext_resource type="FontFile" uid="uid://ca8e7y8nc3mqf" path="res://fonts/montserrat_bold.ttf" id="1_g0mgg"]
+[ext_resource type="Script" path="res://setup/Setup.gd" id="1_xxnt2"]
+[ext_resource type="Texture2D" uid="uid://b2178okyf32lx" path="res://assets/wallpapers/mountains_green.png" id="2_248de"]
+[ext_resource type="Shader" path="res://assets/shaders/blur.gdshader" id="2_pxa8i"]
+[ext_resource type="FontFile" uid="uid://b6r18peq1u2ow" path="res://fonts/montserrat_medium.ttf" id="3_c2gbq"]
+[ext_resource type="Texture2D" uid="uid://dgsmglp3f10b4" path="res://icon_white.svg" id="6_70ids"]
+[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/styles/gui.tres" id="7_idjta"]
+[ext_resource type="Texture2D" uid="uid://dn5ju6541yxut" path="res://assets/setup/UserIcon.png" id="8_euygf"]
+[ext_resource type="Script" path="res://setup/ColorBox.gd" id="9_d8lhk"]
+[ext_resource type="Texture2D" uid="uid://dyd5taw1sfgvq" path="res://assets/wallpapers/hills_red.png" id="9_nl2qn"]
+[ext_resource type="Texture2D" uid="uid://s50c4k3e027s" path="res://assets/wallpapers/city_yellow.png" id="10_owifl"]
+[ext_resource type="Script" path="res://setup/WallpaperSelections.gd" id="10_pvoa0"]
+[ext_resource type="Texture2D" uid="uid://dqu23c3ingj2a" path="res://assets/wallpapers/clouds_blue.png" id="11_107yw"]
+[ext_resource type="Script" path="res://setup/WallpaperBox.gd" id="12_l5dat"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sodqk"]
+shader = ExtResource("2_pxa8i")
+shader_parameter/lod = 3.864
+
+[sub_resource type="LabelSettings" id="LabelSettings_girm7"]
+font = ExtResource("1_g0mgg")
+font_size = 32
+font_color = Color(0.792157, 0.858824, 0.811765, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t1vkj"]
+font = ExtResource("3_c2gbq")
+font_size = 24
+font_color = Color(0.792157, 0.858824, 0.811765, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q6idb"]
+font = ExtResource("3_c2gbq")
+font_size = 24
+font_color = Color(0.87451, 0.482353, 0.482353, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_le0pl"]
+font = ExtResource("1_g0mgg")
+font_size = 24
+font_color = Color(0.792157, 0.858824, 0.811765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70ocp"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kljm1"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3o8ld"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghq22"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olho7"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Setup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xxnt2")
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -15.0
+offset_right = -27.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("2_248de")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BGBlur" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.25)
+material = SubResource("ShaderMaterial_sodqk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pages" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Page1" type="Control" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Pages/Page1"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 372.0
+offset_bottom = 90.0
+text = "Welcome to Envee!"
+label_settings = SubResource("LabelSettings_girm7")
+
+[node name="Label2" type="Label" parent="Pages/Page1"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 90.0
+offset_right = 372.0
+offset_bottom = 130.0
+text = "An easily usable system is almost ready for you!
+We just need to setup a few things, and you'll be set!"
+label_settings = SubResource("LabelSettings_t1vkj")
+
+[node name="Logo" type="TextureRect" parent="Pages/Page1"]
+modulate = Color(0.792157, 0.858824, 0.811765, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 150.0
+grow_horizontal = 0
+texture = ExtResource("6_70ids")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="Pages/Page1"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -171.0
+offset_top = -91.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("7_idjta")
+text = "Begin"
+
+[node name="Page2" type="Control" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Pages/Page2"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 372.0
+offset_bottom = 90.0
+text = "User Account"
+label_settings = SubResource("LabelSettings_girm7")
+
+[node name="Label2" type="Label" parent="Pages/Page2"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 90.0
+offset_right = 372.0
+offset_bottom = 130.0
+text = "Let's create a user account to store your
+documents and files on!"
+label_settings = SubResource("LabelSettings_t1vkj")
+
+[node name="Error" type="Label" parent="Pages/Page2"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -479.0
+offset_top = -151.0
+offset_right = -56.0
+offset_bottom = -120.0
+grow_horizontal = 0
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_q6idb")
+horizontal_alignment = 2
+
+[node name="Logo" type="TextureRect" parent="Pages/Page2"]
+modulate = Color(0.792157, 0.858824, 0.811765, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 150.0
+grow_horizontal = 0
+texture = ExtResource("8_euygf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="Pages/Page2"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -91.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("7_idjta")
+text = "Continue"
+
+[node name="UsernameField" type="LineEdit" parent="Pages/Page2"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 252.0
+offset_right = 445.0
+offset_bottom = 278.0
+theme = ExtResource("7_idjta")
+placeholder_text = "Enter your username here..."
+max_length = 50
+
+[node name="Label" type="Label" parent="Pages/Page2/UsernameField"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -50.0
+offset_right = 119.0
+offset_bottom = -19.0
+text = "Username"
+label_settings = SubResource("LabelSettings_le0pl")
+
+[node name="PasswordField" type="LineEdit" parent="Pages/Page2"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 372.0
+offset_right = 445.0
+offset_bottom = 398.0
+theme = ExtResource("7_idjta")
+placeholder_text = "Enter your password here..."
+max_length = 50
+secret = true
+secret_character = "*"
+
+[node name="Label" type="Label" parent="Pages/Page2/PasswordField"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -50.0
+offset_right = 119.0
+offset_bottom = -19.0
+text = "Password"
+label_settings = SubResource("LabelSettings_le0pl")
+
+[node name="PasswordHintField" type="LineEdit" parent="Pages/Page2"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 492.0
+offset_right = 445.0
+offset_bottom = 518.0
+theme = ExtResource("7_idjta")
+placeholder_text = "Enter your password hint here..."
+max_length = 50
+
+[node name="Label" type="Label" parent="Pages/Page2/PasswordHintField"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -50.0
+offset_right = 119.0
+offset_bottom = -19.0
+text = "Password Hint"
+label_settings = SubResource("LabelSettings_le0pl")
+
+[node name="Page3" type="Control" parent="Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_idjta")
+
+[node name="Label" type="Label" parent="Pages/Page3"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 372.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 32
+text = "Personalization"
+
+[node name="Label2" type="Label" parent="Pages/Page3"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 90.0
+offset_right = 372.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("3_c2gbq")
+text = "Choose the wallpaper and color you like the most!
+You can change this later in Settings."
+
+[node name="user" type="TextureRect" parent="Pages/Page3"]
+modulate = Color(0.792157, 0.858824, 0.811765, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 150.0
+grow_horizontal = 0
+texture = ExtResource("8_euygf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="Pages/Page3"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -91.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Continue"
+
+[node name="Label3" type="Label" parent="Pages/Page3"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 202.0
+offset_right = 179.0
+offset_bottom = 233.0
+text = "Color Scheme"
+
+[node name="ColorSelections" type="HBoxContainer" parent="Pages/Page3"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 248.0
+offset_right = 448.0
+offset_bottom = 348.0
+
+[node name="Color1" type="Control" parent="Pages/Page3/ColorSelections"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("9_d8lhk")
+
+[node name="Panel" type="Panel" parent="Pages/Page3/ColorSelections/Color1"]
+modulate = Color(0.713726, 0.25098, 0.25098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = -6.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_70ocp")
+
+[node name="Color2" type="Control" parent="Pages/Page3/ColorSelections"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("9_d8lhk")
+
+[node name="Panel" type="Panel" parent="Pages/Page3/ColorSelections/Color2"]
+modulate = Color(0.752941, 0.72549, 0.462745, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_kljm1")
+
+[node name="Color3" type="Control" parent="Pages/Page3/ColorSelections"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("9_d8lhk")
+
+[node name="Panel" type="Panel" parent="Pages/Page3/ColorSelections/Color3"]
+modulate = Color(0.462745, 0.752941, 0.545098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_3o8ld")
+
+[node name="Color4" type="Control" parent="Pages/Page3/ColorSelections"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("9_d8lhk")
+
+[node name="Panel" type="Panel" parent="Pages/Page3/ColorSelections/Color4"]
+modulate = Color(0.462745, 0.647059, 0.752941, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ghq22")
+
+[node name="ColorIndicator" type="Panel" parent="Pages/Page3"]
+modulate = Color(0.462745, 0.752941, 0.545098, 1)
+layout_mode = 0
+offset_left = 300.0
+offset_top = 357.0
+offset_right = 309.0
+offset_bottom = 366.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_olho7")
+
+[node name="Label4" type="Label" parent="Pages/Page3"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 394.0
+offset_right = 179.0
+offset_bottom = 425.0
+text = "Wallpaper"
+
+[node name="WallpaperSelections" type="Control" parent="Pages/Page3"]
+clip_contents = true
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 442.0
+offset_right = 570.0
+offset_bottom = 600.0
+script = ExtResource("10_pvoa0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pages/Page3/WallpaperSelections"]
+layout_mode = 0
+offset_left = -170.0
+offset_right = 675.0
+offset_bottom = 158.0
+theme_override_constants/separation = 15
+
+[node name="Wallpaper1" type="TextureRect" parent="Pages/Page3/WallpaperSelections/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.3)
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+texture = ExtResource("9_nl2qn")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("12_l5dat")
+
+[node name="Wallpaper2" type="TextureRect" parent="Pages/Page3/WallpaperSelections/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.3)
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+texture = ExtResource("10_owifl")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("12_l5dat")
+
+[node name="Wallpaper3" type="TextureRect" parent="Pages/Page3/WallpaperSelections/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+texture = ExtResource("2_248de")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("12_l5dat")
+
+[node name="Wallpaper4" type="TextureRect" parent="Pages/Page3/WallpaperSelections/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.3)
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+texture = ExtResource("11_107yw")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("12_l5dat")
+
+[connection signal="button_up" from="Pages/Page1/Button" to="." method="switch_page" binds= [2]]
+[connection signal="pressed" from="Pages/Page2/Button" to="." method="create_user"]
+[connection signal="pressed" from="Pages/Page3/Button" to="." method="finish_setup"]
+[connection signal="selected" from="Pages/Page3/ColorSelections/Color1" to="." method="select_color" binds= [0]]
+[connection signal="selected" from="Pages/Page3/ColorSelections/Color2" to="." method="select_color" binds= [1]]
+[connection signal="selected" from="Pages/Page3/ColorSelections/Color3" to="." method="select_color" binds= [2]]
+[connection signal="selected" from="Pages/Page3/ColorSelections/Color4" to="." method="select_color" binds= [3]]
+[connection signal="selected" from="Pages/Page3/WallpaperSelections/HBoxContainer/Wallpaper1" to="." method="select_wallpaper" binds= [0]]
+[connection signal="selected" from="Pages/Page3/WallpaperSelections/HBoxContainer/Wallpaper2" to="." method="select_wallpaper" binds= [1]]
+[connection signal="selected" from="Pages/Page3/WallpaperSelections/HBoxContainer/Wallpaper3" to="." method="select_wallpaper" binds= [2]]
+[connection signal="selected" from="Pages/Page3/WallpaperSelections/HBoxContainer/Wallpaper4" to="." method="select_wallpaper" binds= [3]]

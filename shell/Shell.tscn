@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8eflm8h65ev0"]
+
+[ext_resource type="Script" path="res://shell/Shell.gd" id="1_vhfvf"]
+[ext_resource type="Texture2D" uid="uid://b2178okyf32lx" path="res://assets/wallpapers/mountains_green.png" id="1_y45vb"]
+[ext_resource type="Shader" path="res://assets/shaders/blur.gdshader" id="3_00bc1"]
+[ext_resource type="Script" path="res://shell/Wallpaper.gd" id="3_p55rv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6g6b"]
+shader = ExtResource("3_00bc1")
+shader_parameter/lod = 3.864
+
+[node name="Shell" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vhfvf")
+
+[node name="Wallpaper" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_y45vb")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_p55rv")
+
+[node name="Taskbar" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_w6g6b")
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FG" type="ColorRect" parent="Taskbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.063, 0.086, 0.063, 0.5)
+metadata/_edit_lock_ = true

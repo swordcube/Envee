@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://5btj71e6kvom"]
+
+[ext_resource type="Script" path="res://Boot.gd" id="1_tiupw"]
+[ext_resource type="Texture2D" uid="uid://dgsmglp3f10b4" path="res://icon_white.svg" id="2_e50vg"]
+[ext_resource type="Theme" uid="uid://dgrplikt713s8" path="res://assets/styles/progress_bar.tres" id="3_xgelb"]
+[ext_resource type="FontFile" uid="uid://ca8e7y8nc3mqf" path="res://fonts/montserrat_bold.ttf" id="4_jc1cd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dgk7a"]
+font = ExtResource("4_jc1cd")
+
+[node name="Boot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tiupw")
+metadata/_edit_lock_ = true
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e50vg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Progress" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.5
+offset_top = 108.0
+offset_right = 102.5
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_xgelb")
+max_value = 4.0
+show_percentage = false
+
+[node name="Status" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = 133.0
+offset_right = 107.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading LogonInterface..."
+label_settings = SubResource("LabelSettings_dgk7a")
+horizontal_alignment = 1
