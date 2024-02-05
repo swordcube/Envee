@@ -16,6 +16,8 @@ func _ready():
 	
 func _process(delta:float):
 	progress.value = lerpf(progress.value, float(cur_progress), delta * 60 * 0.25)
+	if Input.is_anything_pressed():
+		immediately_finish()
 
 func timed_method(delay_s:float, method:Callable):
 	var timer:SceneTreeTimer = get_tree().create_timer(delay_s)
@@ -66,6 +68,9 @@ func finish_booting():
 	
 	await get_tree().create_timer(0.75).timeout
 	
+	immediately_finish()
+	
+func immediately_finish():
 	if UserDatabase.users.is_empty():
 		get_tree().change_scene_to_file("res://setup/Setup.tscn")
 	else:

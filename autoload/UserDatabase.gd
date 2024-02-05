@@ -21,8 +21,8 @@ func data_for(user_name:String) -> UserData:
 
 func scan():
 	users.clear()
-	for user in DirAccess.get_files_at(USER_DIR):
-		var json_path:String = "%s/%s" % [USER_DIR, user]
+	for user in DirAccess.get_directories_at(USER_DIR):
+		var json_path:String = "%s/%s/config.json" % [USER_DIR, user]
 		if not FileAccess.file_exists(json_path):
 			continue
 			
@@ -38,7 +38,13 @@ func scan():
 		users.append(data)
 		
 func save(user_name:String, data:Dictionary):
-	var f:FileAccess = FileAccess.open("%s/%s.json" % [USER_DIR, user_name], FileAccess.WRITE)
+	var personal_dir:String = "%s/%s" % [USER_DIR, user_name]
+	if not DirAccess.dir_exists_absolute(personal_dir):
+		DirAccess.make_dir_absolute(personal_dir)
+		for d in ["Desktop", "Documents", "Downloads", "Pictures", "Music", "Videos"]:
+			DirAccess.make_dir_absolute(personal_dir+"/"+d)
+	
+	var f:FileAccess = FileAccess.open("%s/%s/config.json" % [USER_DIR, user_name], FileAccess.WRITE)
 	f.store_string(JSON.stringify(data, "\t"))
 	
 	var d:UserData = data_for(user_name)

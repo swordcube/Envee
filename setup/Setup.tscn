@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://assets/shaders/blur.gdshader" id="2_pxa8i"]
 [ext_resource type="FontFile" uid="uid://b6r18peq1u2ow" path="res://fonts/montserrat_medium.ttf" id="3_c2gbq"]
 [ext_resource type="Texture2D" uid="uid://dgsmglp3f10b4" path="res://icon_white.svg" id="6_70ids"]
-[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/styles/gui.tres" id="7_idjta"]
+[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/themes/gui.tres" id="7_idjta"]
 [ext_resource type="Texture2D" uid="uid://dn5ju6541yxut" path="res://assets/setup/UserIcon.png" id="8_euygf"]
 [ext_resource type="Script" path="res://setup/ColorBox.gd" id="9_d8lhk"]
 [ext_resource type="Texture2D" uid="uid://dyd5taw1sfgvq" path="res://assets/wallpapers/hills_red.png" id="9_nl2qn"]

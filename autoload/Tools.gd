@@ -8,7 +8,8 @@ enum PicturePosition {
 	CENTER
 }
 
-const GUI_THEME:Theme = preload("res://assets/styles/gui.tres")
+const GUI_THEME:Theme = preload("res://assets/themes/gui.tres")
+const GUI_SMALL_THEME:Theme = preload("res://assets/themes/gui_small.tres")
 
 var cur_wallpaper:Texture2D
 var cur_accent_color:Color
@@ -54,27 +55,38 @@ func update_accent_color(new_color:Color):
 	var line_edit_n := Tools.GUI_THEME.get_stylebox("normal", "LineEdit") as StyleBoxFlat
 	line_edit_n.bg_color = new_color.lerp(Color.BLACK, 0.75)
 	
+	var line_edit_sn := Tools.GUI_SMALL_THEME.get_stylebox("normal", "LineEdit") as StyleBoxFlat
+	line_edit_sn.bg_color = new_color.lerp(Color.BLACK, 0.75)
+	line_edit_sn.border_color = line_edit_sn.bg_color
+	
 	var line_edit_f := Tools.GUI_THEME.get_stylebox("focus", "LineEdit") as StyleBoxFlat
 	line_edit_f.border_color = new_color.lerp(Color.BLACK, 0.15)
 	line_edit_f.border_color.a = 0.5
+	
+	var line_edit_sf := Tools.GUI_SMALL_THEME.get_stylebox("focus", "LineEdit") as StyleBoxFlat
+	line_edit_sf.border_color = new_color.lerp(Color.BLACK, 0.15)
+	line_edit_sf.border_color.a = 0.5
 
-	Tools.GUI_THEME.set_color("font_placeholder_color", "LineEdit", line_edit_f.border_color)
-	Tools.GUI_THEME.set_color("font_color", "LineEdit", Color.WHITE.lerp(new_color, 0.35))
-	Tools.GUI_THEME.set_color("font_color", "Label", Color.WHITE.lerp(new_color, 0.35))
+	for th in [Tools.GUI_THEME, Tools.GUI_SMALL_THEME]:
+		th.set_color("font_placeholder_color", "LineEdit", line_edit_f.border_color)
+		th.set_color("font_color", "LineEdit", Color.WHITE.lerp(new_color, 0.35))
+		th.set_color("font_color", "Label", Color.WHITE.lerp(new_color, 0.35))
 	
-	var button_n := Tools.GUI_THEME.get_stylebox("normal", "Button") as StyleBoxFlat
-	button_n.bg_color = new_color.lerp(Color.BLACK, 0.25)
+		var button_n := th.get_stylebox("normal", "Button") as StyleBoxFlat
+		button_n.bg_color = new_color.lerp(Color.BLACK, 0.25)
+		
+		var button_h := th.get_stylebox("hover", "Button") as StyleBoxFlat
+		button_h.bg_color = new_color.lerp(Color.BLACK, 0.45)
+		
+		var button_p := th.get_stylebox("pressed", "Button") as StyleBoxFlat
+		button_p.bg_color = new_color.lerp(Color.BLACK, 0.15)
+		
+		var button_f := th.get_stylebox("focus", "Button") as StyleBoxFlat
+		button_f.border_color = new_color.lerp(Color.WHITE, 0.45)
+		button_f.border_color.a = 0.65
 	
-	var button_h := Tools.GUI_THEME.get_stylebox("hover", "Button") as StyleBoxFlat
-	button_h.bg_color = new_color.lerp(Color.BLACK, 0.45)
+		for i in ["font_color", "font_focus_color", "font_hover_color", "font_hover_pressed_color"]:
+			th.set_color(i, "Button", Color.WHITE.lerp(new_color, 0.35))
 	
-	var button_p := Tools.GUI_THEME.get_stylebox("pressed", "Button") as StyleBoxFlat
-	button_p.bg_color = new_color.lerp(Color.BLACK, 0.15)
-	
-	var button_f := Tools.GUI_THEME.get_stylebox("focus", "Button") as StyleBoxFlat
-	button_f.border_color = new_color.lerp(Color.WHITE, 0.45)
-	button_f.border_color.a = 0.65
-	
-	for i in ["font_color", "font_focus_color", "font_hover_color", "font_hover_pressed_color"]:
-		Tools.GUI_THEME.set_color(i, "Button", Color.WHITE.lerp(new_color, 0.35))
-	
+	var panel := Tools.GUI_THEME.get_stylebox("panel", "Panel") as StyleBoxFlat
+	panel.bg_color = new_color

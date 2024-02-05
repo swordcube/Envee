@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Boot.gd" id="1_tiupw"]
 [ext_resource type="Texture2D" uid="uid://dgsmglp3f10b4" path="res://icon_white.svg" id="2_e50vg"]
-[ext_resource type="Theme" uid="uid://dgrplikt713s8" path="res://assets/styles/progress_bar.tres" id="3_xgelb"]
+[ext_resource type="Theme" uid="uid://dgrplikt713s8" path="res://assets/themes/progress_bar.tres" id="3_xgelb"]
 [ext_resource type="FontFile" uid="uid://ca8e7y8nc3mqf" path="res://fonts/montserrat_bold.ttf" id="4_jc1cd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dgk7a"]

@@ -23,9 +23,6 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	user_data = UserDatabase.users[Tools.current_user]
-	ui_container.position.x = 30.0
-	ui_container.modulate.a = 0.0
-	
 	for user in UserDatabase.users:
 		wallpapers[user.user_name] = load(user.wallpaper) if ResourceLoader.exists(user.wallpaper) else ImageTexture.create_from_image(Image.load_from_file(user.wallpaper))
 	
@@ -37,16 +34,20 @@ func _ready():
 	accept_password.modulate = Tools.GUI_THEME.get_color("font_color", "Label")
 	
 	update_accent_color()
-	
-	await get_tree().create_timer(0.5).timeout
-	
-	var tween:Tween = get_tree().create_tween()
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_parallel()
-	tween.tween_property(ui_container, "position:x", 0.0, 1.0)
-	tween.tween_property(ui_container, "modulate:a", 1.0, 1.0)
-	tween.tween_property(bg, "modulate:a", 0.15, 1.0)
+	if SystemSettings.enable_animations:
+		ui_container.modulate.a = 0.0
+		ui_container.position.x = 30.0
+		
+		await get_tree().create_timer(0.5).timeout
+		var tween:Tween = get_tree().create_tween()
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_parallel()
+		tween.tween_property(ui_container, "position:x", 0.0, 1.0)
+		tween.tween_property(ui_container, "modulate:a", 1.0, 1.0)
+		tween.tween_property(bg, "modulate:a", 0.15, 1.0)
+	else:
+		bg.modulate.a = 0.15
 
 func _input(event:InputEvent):
 	if event is InputEventKey:
@@ -70,15 +71,18 @@ func try_login():
 		error_label.visible = true
 
 func load_into_shell():
-	var tween:Tween = get_tree().create_tween()
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_parallel()
-	tween.tween_property(ui_container, "position:x", -30.0, 0.5)
-	tween.tween_property(ui_container, "modulate:a", 0.0, 0.5)
-	tween.tween_property(bg, "modulate:a", 0.0, 1.0)
+	if SystemSettings.enable_animations:
+		var tween:Tween = get_tree().create_tween()
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_parallel()
+		tween.tween_property(ui_container, "position:x", -30.0, 0.5)
+		tween.tween_property(ui_container, "modulate:a", 0.0, 0.5)
+		tween.tween_property(bg, "modulate:a", 0.0, 1.0)
+	else:
+		ui_container.modulate.a = 0.0
+		bg.modulate.a = 0.0
 	
 	await get_tree().create_timer(1.05).timeout
-	
 	Tools.cur_wallpaper = wallpapers[user_data.user_name]
 	get_tree().change_scene_to_file("res://shell/Shell.tscn")

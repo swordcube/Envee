@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bft5p058k6bkf"]
+[gd_scene load_steps=11 format=3 uid="uid://bft5p058k6bkf"]
 
 [ext_resource type="Script" path="res://login/LoginUI.gd" id="1_j63yb"]
 [ext_resource type="Texture2D" uid="uid://b2178okyf32lx" path="res://assets/wallpapers/mountains_green.png" id="2_wrtrk"]
 [ext_resource type="Shader" path="res://assets/shaders/blur.gdshader" id="3_h8ygn"]
+[ext_resource type="Script" path="res://shell/Wallpaper.gd" id="3_owyw7"]
 [ext_resource type="Texture2D" uid="uid://cxr4t3s4xetqr" path="res://assets/generic/user.png" id="4_h3nll"]
 [ext_resource type="Texture2D" uid="uid://b6ocu2usti84s" path="res://assets/generic/arrow_right.svg" id="6_h74o6"]
-[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/styles/gui.tres" id="7_myx6g"]
+[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/themes/gui.tres" id="7_myx6g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sodqk"]
 shader = ExtResource("3_h8ygn")
@@ -43,6 +44,7 @@ scale = Vector2(1.05, 1.05)
 texture = ExtResource("2_wrtrk")
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("3_owyw7")
 
 [node name="BGBlur" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0.25)

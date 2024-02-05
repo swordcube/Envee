@@ -1,0 +1,132 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm1ypvoem0twf"]
+
+[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/themes/gui.tres" id="1_wjd0a"]
+[ext_resource type="Script" path="res://processes/Process.gd" id="2_q6i4r"]
+[ext_resource type="PackedScene" uid="uid://bnnciace0erhd" path="res://processes/parts/TitleBar.tscn" id="3_u1ytb"]
+[ext_resource type="Script" path="res://processes/parts/titlebar/ResizeSide.gd" id="8_r12u0"]
+[ext_resource type="Script" path="res://processes/parts/titlebar/ResizeCorner.gd" id="9_77wej"]
+
+[node name="template" type="Panel"]
+self_modulate = Color(0.470588, 0.470588, 0.470588, 1)
+offset_right = 425.0
+offset_bottom = 290.0
+theme = ExtResource("1_wjd0a")
+script = ExtResource("2_q6i4r")
+
+[node name="Container" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wjd0a")
+
+[node name="TitleBar" parent="Container" instance=ExtResource("3_u1ytb")]
+layout_mode = 1
+title = "File Browser"
+
+[node name="ResizeAreas" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftSide" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = -4.0
+grow_vertical = 2
+script = ExtResource("8_r12u0")
+
+[node name="RightSide" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("8_r12u0")
+side = 1
+
+[node name="TopSide" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_right = -2.0
+offset_bottom = 4.0
+grow_horizontal = 2
+script = ExtResource("8_r12u0")
+side = 2
+
+[node name="BottomSide" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("8_r12u0")
+side = 3
+
+[node name="TLCorner" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 4.0
+offset_bottom = 4.0
+script = ExtResource("9_77wej")
+top = true
+
+[node name="TRCorner" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+script = ExtResource("9_77wej")
+left = false
+top = true
+
+[node name="BLCorner" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_right = 4.0
+grow_vertical = 0
+script = ExtResource("9_77wej")
+
+[node name="BRCorner" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("9_77wej")
+left = false

@@ -1,0 +1,270 @@
+[gd_scene load_steps=10 format=3 uid="uid://cyiplu3se6i7r"]
+
+[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/themes/gui.tres" id="1_4cii0"]
+[ext_resource type="Script" path="res://processes/Process.gd" id="1_lqtgp"]
+[ext_resource type="PackedScene" uid="uid://bnnciace0erhd" path="res://processes/parts/TitleBar.tscn" id="3_8ro68"]
+[ext_resource type="Texture2D" uid="uid://b6ocu2usti84s" path="res://assets/generic/arrow_right.svg" id="4_ghyue"]
+[ext_resource type="Texture2D" uid="uid://cbcrjcma0mtfy" path="res://assets/generic/refresh.svg" id="5_quj5p"]
+[ext_resource type="Texture2D" uid="uid://co4iqgwliy054" path="res://assets/generic/home.svg" id="6_5v7ki"]
+[ext_resource type="Theme" uid="uid://ws22u1aa5il5" path="res://assets/themes/gui_small.tres" id="7_g5l3q"]
+[ext_resource type="Script" path="res://processes/parts/titlebar/ResizeCorner.gd" id="8_3re74"]
+[ext_resource type="Script" path="res://processes/parts/titlebar/ResizeSide.gd" id="8_si26u"]
+
+[node name="filebrowser" type="Panel"]
+self_modulate = Color(0.470588, 0.470588, 0.470588, 1)
+offset_right = 850.0
+offset_bottom = 580.0
+theme = ExtResource("1_4cii0")
+script = ExtResource("1_lqtgp")
+
+[node name="Container" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4cii0")
+
+[node name="TitleBar" parent="Container" instance=ExtResource("3_8ro68")]
+layout_mode = 1
+title = "File Browser"
+
+[node name="NavigationBar" type="Panel" parent="Container"]
+self_modulate = Color(0.470588, 0.470588, 0.470588, 1)
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="NavigationButtons" type="HBoxContainer" parent="Container/NavigationBar"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="Back" type="Control" parent="Container/NavigationBar/NavigationButtons"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Container/NavigationBar/NavigationButtons/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("4_ghyue")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Forward" type="Control" parent="Container/NavigationBar/NavigationButtons"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Container/NavigationBar/NavigationButtons/Forward"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("4_ghyue")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Refresh" type="Control" parent="Container/NavigationBar/NavigationButtons"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Container/NavigationBar/NavigationButtons/Refresh"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("5_quj5p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Home" type="Control" parent="Container/NavigationBar/NavigationButtons"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Container/NavigationBar/NavigationButtons/Home"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("6_5v7ki")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AddressBar" type="LineEdit" parent="Container/NavigationBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 141.0
+offset_top = 6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_g5l3q")
+text = "home://"
+
+[node name="QuickAreaBG" type="Panel" parent="Container"]
+self_modulate = Color(0.713726, 0.713726, 0.713726, 1)
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 60.0
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Container/QuickAreaBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuickArea" type="Control" parent="Container/QuickAreaBG/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResizeAreas" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftSide" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = -4.0
+grow_vertical = 2
+script = ExtResource("8_si26u")
+
+[node name="RightSide" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("8_si26u")
+side = 1
+
+[node name="TopSide" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_right = -2.0
+offset_bottom = 4.0
+grow_horizontal = 2
+script = ExtResource("8_si26u")
+side = 2
+
+[node name="BottomSide" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("8_si26u")
+side = 3
+
+[node name="TLCorner" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 4.0
+offset_bottom = 4.0
+script = ExtResource("8_3re74")
+top = true
+
+[node name="TRCorner" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+script = ExtResource("8_3re74")
+left = false
+top = true
+
+[node name="BLCorner" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_right = 4.0
+grow_vertical = 0
+script = ExtResource("8_3re74")
+
+[node name="BRCorner" type="Control" parent="ResizeAreas"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("8_3re74")
+left = false
+
+[connection signal="text_submitted" from="Container/NavigationBar/AddressBar" to="." method="_on_address_bar_text_submitted"]

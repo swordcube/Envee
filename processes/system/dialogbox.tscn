@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://btmu4wurl3poe"]
+
+[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/themes/gui.tres" id="1_t3axb"]
+[ext_resource type="Script" path="res://processes/system/dialogbox.gd" id="2_tk4vv"]
+[ext_resource type="PackedScene" uid="uid://bnnciace0erhd" path="res://processes/parts/TitleBar.tscn" id="3_ct2l8"]
+[ext_resource type="Theme" uid="uid://ws22u1aa5il5" path="res://assets/themes/gui_small.tres" id="4_babuu"]
+[ext_resource type="Texture2D" uid="uid://da5r7qx24oayg" path="res://assets/dialog_icons/info.png" id="5_vs7bf"]
+
+[node name="dialog" type="Panel"]
+self_modulate = Color(0.470588, 0.470588, 0.470588, 1)
+offset_right = 500.0
+offset_bottom = 200.0
+theme = ExtResource("1_t3axb")
+script = ExtResource("2_tk4vv")
+
+[node name="Container" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_t3axb")
+
+[node name="TitleBar" parent="Container" instance=ExtResource("3_ct2l8")]
+layout_mode = 1
+title = "Dialog Template"
+icon = null
+minimizable = false
+maximizable = false
+
+[node name="MessageContents" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 96.0
+offset_top = -51.0
+offset_right = -14.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Dialog Contents"
+autowrap_mode = 3
+
+[node name="ButtonList" type="HBoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -39.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="OK" type="Button" parent="Container/ButtonList"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme = ExtResource("4_babuu")
+text = "OK"
+
+[node name="Icon" type="TextureRect" parent="Container"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 47.0
+offset_right = 77.0
+offset_bottom = 107.0
+texture = ExtResource("5_vs7bf")
+
+[connection signal="button_up" from="Container/ButtonList/OK" to="." method="button_press" binds= [&"OK"]]

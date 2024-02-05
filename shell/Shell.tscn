@@ -1,13 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8eflm8h65ev0"]
+[gd_scene load_steps=14 format=3 uid="uid://c8eflm8h65ev0"]
 
 [ext_resource type="Script" path="res://shell/Shell.gd" id="1_vhfvf"]
 [ext_resource type="Texture2D" uid="uid://b2178okyf32lx" path="res://assets/wallpapers/mountains_green.png" id="1_y45vb"]
 [ext_resource type="Shader" path="res://assets/shaders/blur.gdshader" id="3_00bc1"]
 [ext_resource type="Script" path="res://shell/Wallpaper.gd" id="3_p55rv"]
+[ext_resource type="Script" path="res://shell/taskbar/Taskbar.gd" id="5_ultlb"]
+[ext_resource type="Texture2D" uid="uid://dgsmglp3f10b4" path="res://icon_white.svg" id="6_5im6t"]
+[ext_resource type="Theme" uid="uid://5e0gdkevoqio" path="res://assets/themes/gui.tres" id="7_btkfn"]
+[ext_resource type="Script" path="res://shell/taskbar/TaskbarIcon.gd" id="8_8d8ve"]
+[ext_resource type="Texture2D" uid="uid://d0vl5kobvhnih" path="res://assets/app_icons/filebrowser.png" id="9_wnoau"]
+[ext_resource type="Texture2D" uid="uid://cdxrhhko0xv4p" path="res://assets/app_icons/notepad.png" id="10_2osfk"]
+[ext_resource type="Texture2D" uid="uid://br63lup4caq3b" path="res://assets/app_icons/store.png" id="11_u7ay5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w6g6b"]
 shader = ExtResource("3_00bc1")
 shader_parameter/lod = 3.864
+
+[sub_resource type="LabelSettings" id="LabelSettings_1jpnv"]
+font_size = 18
 
 [node name="Shell" type="Control"]
 layout_mode = 3
@@ -31,8 +41,9 @@ stretch_mode = 5
 script = ExtResource("3_p55rv")
 
 [node name="Taskbar" type="ColorRect" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_w6g6b")
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -40,6 +51,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("5_ultlb")
 
 [node name="FG" type="ColorRect" parent="Taskbar"]
 layout_mode = 1
@@ -50,3 +62,183 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.063, 0.086, 0.063, 0.5)
 metadata/_edit_lock_ = true
+
+[node name="StartButton" type="ColorRect" parent="Taskbar"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+color = Color(0.462745, 0.752941, 0.545098, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Taskbar/StartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_5im6t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Clock" type="ColorRect" parent="Taskbar"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.462745, 0.752941, 0.545098, 1)
+
+[node name="Label" type="Label" parent="Taskbar/Clock"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -11.5
+offset_right = -9.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("7_btkfn")
+text = "12:00am"
+label_settings = SubResource("LabelSettings_1jpnv")
+horizontal_alignment = 1
+
+[node name="UpdateTimer" type="Timer" parent="Taskbar/Clock"]
+autostart = true
+
+[node name="IconContainer" type="Control" parent="Taskbar"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_right = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IconList" type="HBoxContainer" parent="Taskbar/IconContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="filebrowser" type="ColorRect" parent="Taskbar/IconContainer/IconList"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+color = Color(0.462745, 0.752941, 0.545098, 1)
+script = ExtResource("8_8d8ve")
+
+[node name="TextureRect" type="TextureRect" parent="Taskbar/IconContainer/IconList/filebrowser"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_wnoau")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="OpenIndicator" type="ColorRect" parent="Taskbar/IconContainer/IconList/filebrowser"]
+visible = false
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="notepad" type="ColorRect" parent="Taskbar/IconContainer/IconList"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+color = Color(0.462745, 0.752941, 0.545098, 1)
+script = ExtResource("8_8d8ve")
+
+[node name="TextureRect" type="TextureRect" parent="Taskbar/IconContainer/IconList/notepad"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_2osfk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="OpenIndicator" type="ColorRect" parent="Taskbar/IconContainer/IconList/notepad"]
+visible = false
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="store" type="ColorRect" parent="Taskbar/IconContainer/IconList"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+color = Color(0.462745, 0.752941, 0.545098, 1)
+script = ExtResource("8_8d8ve")
+
+[node name="TextureRect" type="TextureRect" parent="Taskbar/IconContainer/IconList/store"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_u7ay5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="OpenIndicator" type="ColorRect" parent="Taskbar/IconContainer/IconList/store"]
+visible = false
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 0

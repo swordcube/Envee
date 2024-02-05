@@ -1,9 +1,7 @@
 extends TextureRect
 
-
 func _ready() -> void:
 	get_viewport().size_changed.connect(on_size_change)
-
 
 func on_size_change() -> void:
 	if UserDatabase.users.is_empty():

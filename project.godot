@@ -23,6 +23,8 @@ config/icon="res://icon.svg"
 
 Tools="*res://autoload/Tools.gd"
 UserDatabase="*res://autoload/UserDatabase.gd"
+ProcessManager="*res://autoload/ProcessManager.gd"
+SystemSettings="*res://autoload/SystemSettings.gd"
 
 [input]
 
